@@ -23,7 +23,7 @@ public class UserDto implements Serializable {
 
     private String userSkills;
 
-    
+
     public Integer getUserId() {
         return userId;
     }
