@@ -1,6 +1,6 @@
 package com.freelancer.spring.flbackend.dao;
 
-import com.freelancer.spring.flbackend.User;
+import com.freelancer.spring.flbackend.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;

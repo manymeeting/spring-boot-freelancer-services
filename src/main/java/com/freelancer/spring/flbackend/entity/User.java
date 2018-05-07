@@ -1,4 +1,4 @@
-package com.freelancer.spring.flbackend;
+package com.freelancer.spring.flbackend.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

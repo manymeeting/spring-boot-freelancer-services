@@ -1,7 +1,7 @@
 package com.freelancer.spring.flbackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.freelancer.spring.flbackend.User;
+import com.freelancer.spring.flbackend.entity.User;
 
 import java.io.Serializable;
 

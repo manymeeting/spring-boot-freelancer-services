@@ -1,6 +1,6 @@
 package com.freelancer.spring.flbackend.dto.param;
 
-import com.freelancer.spring.flbackend.User;
+import com.freelancer.spring.flbackend.entity.User;
 
 import java.io.Serializable;
 

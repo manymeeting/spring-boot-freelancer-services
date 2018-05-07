@@ -1,6 +1,5 @@
 package com.freelancer.spring.flbackend.service;
 
-import com.freelancer.spring.flbackend.User;
 import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.dto.UserProfileDto;
 import com.freelancer.spring.flbackend.dto.param.CreateUserDto;

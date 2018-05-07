@@ -1,7 +1,7 @@
 package com.freelancer.spring.flbackend.service.impl;
 
 
-import com.freelancer.spring.flbackend.User;
+import com.freelancer.spring.flbackend.entity.User;
 import com.freelancer.spring.flbackend.dao.UserDao;
 import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.dto.UserProfileDto;
