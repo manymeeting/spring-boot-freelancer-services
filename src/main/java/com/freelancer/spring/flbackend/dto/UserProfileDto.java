@@ -78,6 +78,8 @@ public class UserProfileDto {
 
     public static UserProfileDto mapToUserProfileDto(User user) {
 
+        if(user == null) return null;
+
         UserProfileDto UserProfileDto = new UserProfileDto();
         UserProfileDto.setUserId(user.getUserId());
         UserProfileDto.setUserAvatarUrl(user.getUserAvatarUrl());

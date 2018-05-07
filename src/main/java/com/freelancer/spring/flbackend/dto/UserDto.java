@@ -93,6 +93,8 @@ public class UserDto implements Serializable {
 
     public static UserDto mapToUserDto(User user) {
 
+        if(user == null) return null;
+
         UserDto userDto = new UserDto();
         userDto.setUserId(user.getUserId());
         userDto.setUserAvatarUrl(user.getUserAvatarUrl());

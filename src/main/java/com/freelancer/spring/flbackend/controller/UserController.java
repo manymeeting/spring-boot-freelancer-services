@@ -1,6 +1,7 @@
 package com.freelancer.spring.flbackend.controller;
 
 import com.freelancer.spring.flbackend.dto.UserDto;
+import com.freelancer.spring.flbackend.dto.UserProfileDto;
 import com.freelancer.spring.flbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,15 @@ public class UserController {
 
         if (userDto != null)
             return userDto;
+        return null;
+    }
+
+    @GetMapping("users/{userId}/profile")
+    public UserProfileDto getProfile(@PathVariable Integer userId) {
+        UserProfileDto userProfileDto = userService.getUserProfileById(userId);
+
+        if (userProfileDto != null)
+            return userProfileDto;
         return null;
     }
 }
