@@ -4,7 +4,9 @@ import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.dto.UserProfileDto;
 import com.freelancer.spring.flbackend.dto.param.CreateUserDto;
 import com.freelancer.spring.flbackend.dto.param.UpdateAvatarUrlDto;
+import com.freelancer.spring.flbackend.dto.param.UpdateUserDto;
 import com.freelancer.spring.flbackend.service.UserService;
+import com.freelancer.spring.flbackend.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -66,5 +68,27 @@ public class UserController extends GenericController{
         }
         UserProfileDto userProfileDto = userService.updateAvatarUrl(userId, updateAvatarUrlDto.getAvatarUrl());
         return  success(userProfileDto);
+    }
+
+    @PutMapping("/users/{userId}")
+    public ResponseEntity updateUser(@PathVariable Integer userId, @RequestBody UpdateUserDto updateUserDto)
+    {
+        //check validity
+        if(StringUtils.checkIfNullOrEmpty(updateUserDto.getUserName())
+                || StringUtils.checkIfNullOrEmpty(updateUserDto.getUserEmail())
+                || StringUtils.checkIfNullOrEmpty(updateUserDto.getUserPassword()))
+        {
+            return badRequest();
+        }
+
+        //check user existence
+        if(userService.getUserById(userId) == null)
+        {
+            return badRequestWithtMsg("User does not exist");
+        }
+
+        UserDto userDto = userService.updateUser(userId, updateUserDto);
+        return success(userDto);
+
     }
 }
