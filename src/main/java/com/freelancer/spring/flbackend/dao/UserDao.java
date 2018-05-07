@@ -10,5 +10,7 @@ public interface UserDao extends PagingAndSortingRepository<User, Integer> {
     @Query("select user from User user where user.userId = :userId")
     User findUserById(@Param("userId") Integer userId);
 
+    @Query("select user from User user where user.userEmail = :userEmail")
+    User findUserByEmail(@Param("userEmail") String userEmail);
 
 }
