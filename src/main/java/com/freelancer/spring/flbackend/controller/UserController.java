@@ -20,7 +20,7 @@ public class UserController extends GenericController{
     UserService userService;
 
     @GetMapping("users/{userId}")
-    public ResponseEntity<UserDto> getUser(@PathVariable Integer userId) {
+    public ResponseEntity getUser(@PathVariable Integer userId) {
         UserDto userDto = userService.getUserById(userId);
 
         if (userDto != null)
@@ -29,7 +29,7 @@ public class UserController extends GenericController{
     }
 
     @GetMapping("users/{userId}/profile")
-    public ResponseEntity<UserProfileDto> getProfile(@PathVariable Integer userId) {
+    public ResponseEntity getProfile(@PathVariable Integer userId) {
         UserProfileDto userProfileDto = userService.getUserProfileById(userId);
 
         if (userProfileDto != null)
