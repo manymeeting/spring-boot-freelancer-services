@@ -3,7 +3,9 @@ package com.freelancer.spring.flbackend.dto;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.freelancer.spring.flbackend.User;
 
-public class UserProfileDto {
+import java.io.Serializable;
+
+public class UserProfileDto implements Serializable{
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Integer userId;
