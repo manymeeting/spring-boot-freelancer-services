@@ -59,6 +59,7 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public UserDto updateUser(Integer id, UpdateUserDto updateUserDto) {
+        updateUserDto.setUserPassword(passwordEncoder.encode(updateUserDto.getUserPassword()));
 
         User user = userDao.findUserById(id);
         UpdateUserDto.updateUser(user, updateUserDto);
