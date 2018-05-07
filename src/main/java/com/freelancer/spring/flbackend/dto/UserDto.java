@@ -1,6 +1,7 @@
 package com.freelancer.spring.flbackend.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.freelancer.spring.flbackend.User;
 
 import java.io.Serializable;
 
@@ -86,6 +87,23 @@ public class UserDto implements Serializable {
 
     public void setUserSkills(String userSkills) {
         this.userSkills = userSkills;
+    }
+
+
+
+    public static UserDto mapToUserDto(User user) {
+
+        UserDto userDto = new UserDto();
+        userDto.setUserId(user.getUserId());
+        userDto.setUserAvatarUrl(user.getUserAvatarUrl());
+        userDto.setUserEmail(user.getUserEmail());
+        userDto.setUserName(user.getUserName());
+        userDto.setUserPhone(user.getUserPhone());
+        userDto.setUserAbout(user.getUserAbout());
+        userDto.setUserSkills(user.getUserSkills());
+        userDto.setUserPassword(user.getUserPassword());
+
+        return userDto;
     }
 
 
