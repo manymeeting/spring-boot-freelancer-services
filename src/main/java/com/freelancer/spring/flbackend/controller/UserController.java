@@ -3,6 +3,7 @@ package com.freelancer.spring.flbackend.controller;
 import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.dto.UserProfileDto;
 import com.freelancer.spring.flbackend.dto.param.CreateUserDto;
+import com.freelancer.spring.flbackend.dto.param.UpdateAvatarUrlDto;
 import com.freelancer.spring.flbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -53,5 +54,17 @@ public class UserController extends GenericController{
 
         UserDto userDto = userService.createUser(createUserDto);
         return success(userDto);
+    }
+
+    @PutMapping("/users/{userId}/avatar")
+    public ResponseEntity updateAvatar(@PathVariable Integer userId, @RequestBody UpdateAvatarUrlDto updateAvatarUrlDto)
+    {
+        //check validity
+        if(updateAvatarUrlDto.getAvatarUrl() == null || updateAvatarUrlDto.getAvatarUrl().length() == 0)
+        {
+            return badRequest();
+        }
+        UserProfileDto userProfileDto = userService.updateAvatarUrl(userId, updateAvatarUrlDto.getAvatarUrl());
+        return  success(userProfileDto);
     }
 }
