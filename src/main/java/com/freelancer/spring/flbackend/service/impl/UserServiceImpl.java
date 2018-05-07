@@ -1,6 +1,7 @@
 package com.freelancer.spring.flbackend.service.impl;
 
 
+import com.freelancer.spring.flbackend.dto.param.UpdateUserDto;
 import com.freelancer.spring.flbackend.entity.User;
 import com.freelancer.spring.flbackend.dao.UserDao;
 import com.freelancer.spring.flbackend.dto.UserDto;
@@ -54,6 +55,16 @@ public class UserServiceImpl implements UserService{
 
         user = userDao.save(user);
         return UserProfileDto.mapToUserProfileDto(user);
+    }
+
+    @Override
+    public UserDto updateUser(Integer id, UpdateUserDto updateUserDto) {
+
+        User user = userDao.findUserById(id);
+        UpdateUserDto.updateUser(user, updateUserDto);
+
+        user = userDao.save(user);
+        return UserDto.mapToUserDto(user);
     }
 
 
