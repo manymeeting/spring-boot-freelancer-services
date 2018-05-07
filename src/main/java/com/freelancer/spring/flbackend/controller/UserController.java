@@ -4,6 +4,7 @@ import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.dto.UserProfileDto;
 import com.freelancer.spring.flbackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,26 +14,26 @@ import org.springframework.transaction.annotation.Transactional;
 
 @RestController
 @Transactional(rollbackFor = Exception.class)
-public class UserController {
+public class UserController extends GenericController{
 
     @Autowired
     UserService userService;
 
     @GetMapping("users/{userId}")
-    public UserDto getUser(@PathVariable Integer userId) {
+    public ResponseEntity<UserDto> getUser(@PathVariable Integer userId) {
         UserDto userDto = userService.getUserById(userId);
 
         if (userDto != null)
-            return userDto;
-        return null;
+            return success(userDto);
+        return notFound();
     }
 
     @GetMapping("users/{userId}/profile")
-    public UserProfileDto getProfile(@PathVariable Integer userId) {
+    public ResponseEntity<UserProfileDto> getProfile(@PathVariable Integer userId) {
         UserProfileDto userProfileDto = userService.getUserProfileById(userId);
 
         if (userProfileDto != null)
-            return userProfileDto;
-        return null;
+            return success(userProfileDto);
+        return notFound();
     }
 }
