@@ -13,4 +13,6 @@ public interface UserService {
     UserProfileDto getUserProfileById(Integer id);
 
     UserDto createUser(CreateUserDto createUserDto);
+
+    UserProfileDto updateAvatarUrl(Integer id, String avatarUrl);
 }

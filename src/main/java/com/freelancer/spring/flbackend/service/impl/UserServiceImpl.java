@@ -47,5 +47,14 @@ public class UserServiceImpl implements UserService{
         return UserDto.mapToUserDto(user);
     }
 
+    @Override
+    public UserProfileDto updateAvatarUrl(Integer id, String avatarUrl) {
+        User user = userDao.findUserById(id);
+        user.setUserAvatarUrl(avatarUrl);
+
+        user = userDao.save(user);
+        return UserProfileDto.mapToUserProfileDto(user);
+    }
+
 
 }
