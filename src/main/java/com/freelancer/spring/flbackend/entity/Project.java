@@ -43,7 +43,7 @@ public class Project implements Serializable{
     private String budgetRange;
 
     @Column(name="ave_bid_price")
-    private String avrBidPrice;
+    private Integer avrBidPrice;
 
     @NotNull
     @Column(name="published_date")
@@ -105,11 +105,11 @@ public class Project implements Serializable{
         this.budgetRange = budgetRange;
     }
 
-    public String getAvrBidPrice() {
+    public Integer getAvrBidPrice() {
         return avrBidPrice;
     }
 
-    public void setAvrBidPrice(String avrBidPrice) {
+    public void setAvrBidPrice(Integer avrBidPrice) {
         this.avrBidPrice = avrBidPrice;
     }
 
