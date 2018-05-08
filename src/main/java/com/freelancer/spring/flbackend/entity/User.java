@@ -1,8 +1,11 @@
 package com.freelancer.spring.flbackend.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -36,6 +39,14 @@ public class User implements Serializable {
 
     @Column(name="user_skills")
     private String userSkills;
+
+    @OneToMany(mappedBy = "employer")
+    @JsonIgnore
+    private List<Project> publishedProjects;
+
+    @OneToMany(mappedBy = "bidder")
+    @JsonIgnore
+    private  List<Bid> postedBids;
 
     public Integer getUserId() {
         return userId;
@@ -100,4 +111,21 @@ public class User implements Serializable {
     public void setUserSkills(String userSkills) {
         this.userSkills = userSkills;
     }
+
+    public List<Project> getPublishedProjects() {
+        return publishedProjects;
+    }
+
+    public void setPublishedProjects(List<Project> publishedProjects) {
+        this.publishedProjects = publishedProjects;
+    }
+
+    public List<Bid> getPostedBids() {
+        return postedBids;
+    }
+
+    public void setPostedBids(List<Bid> postedBids) {
+        this.postedBids = postedBids;
+    }
+
 }

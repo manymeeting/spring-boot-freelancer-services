@@ -1,12 +1,15 @@
 package com.freelancer.spring.flbackend.entity;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.validation.constraints.NotNull;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-public class Project {
+import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.List;
+
+@Entity
+@Table(name="projects")
+public class Project implements Serializable{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="project_id")
@@ -16,12 +19,15 @@ public class Project {
     @Column(name="project_name")
     private String projectName;
 
-    @NotNull
-    @Column(name="employer_id")
-    private String employerId;
+    @ManyToOne
+    @JoinColumn(name="employer_id")
+    @JsonIgnore
+    private User employer;
 
-    @Column(name="hired_bid_id")
-    private String hiredBidId;
+    @OneToOne
+    @JoinColumn(name="hired_bid_id")
+    @JsonIgnore
+    private Bid hiredBid;
 
     @NotNull
     @Column(name="project_description")
@@ -47,6 +53,10 @@ public class Project {
     @Column(name="status")
     private String status;
 
+    @OneToMany(mappedBy = "project")
+    @JsonIgnore
+    private List<Bid> bids;
+
     public Integer getProjectId() {
         return projectId;
     }
@@ -61,22 +71,6 @@ public class Project {
 
     public void setProjectName(String projectName) {
         this.projectName = projectName;
-    }
-
-    public String getEmployerId() {
-        return employerId;
-    }
-
-    public void setEmployerId(String employerId) {
-        this.employerId = employerId;
-    }
-
-    public String getHiredBidId() {
-        return hiredBidId;
-    }
-
-    public void setHiredBidId(String hiredBidId) {
-        this.hiredBidId = hiredBidId;
     }
 
     public String getProjectDescription() {
@@ -134,4 +128,29 @@ public class Project {
     public void setStatus(String status) {
         this.status = status;
     }
+
+    public List<Bid> getBids() {
+        return bids;
+    }
+
+    public void setBids(List<Bid> bids) {
+        this.bids = bids;
+    }
+
+    public User getEmployer() {
+        return employer;
+    }
+
+    public void setEmployer(User employer) {
+        this.employer = employer;
+    }
+
+    public Bid getHiredBid() {
+        return hiredBid;
+    }
+
+    public void setHiredBid(Bid hiredBid) {
+        this.hiredBid = hiredBid;
+    }
+
 }
