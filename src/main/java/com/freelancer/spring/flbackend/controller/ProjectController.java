@@ -43,4 +43,13 @@ public class ProjectController extends GenericController {
             return success(projectDtoList);
         return notFound();
     }
+
+    @GetMapping("/projects/{projectid}")
+    public ResponseEntity getProjectDetails(@PathVariable Integer projectId) {
+        ProjectDto projectDto = projectService.getProjectDetails(projectId);
+
+        if (projectDto != null)
+            return success(projectDto);
+        return notFound();
+    }
 }
