@@ -1,7 +1,6 @@
 package com.freelancer.spring.flbackend.dao;
 
 import com.freelancer.spring.flbackend.entity.Project;
-import com.freelancer.spring.flbackend.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -18,4 +17,7 @@ public interface ProjectDao extends PagingAndSortingRepository<Project, Integer>
 
     @Query("select p from Project p where p.status = :status")
     List<Project> getAllProjOnStatus(@Param("status") String status);
+
+    @Query("select p from Project p where p.projectId = :projectId")
+    Project getProjectDetails(@Param("projectId") Integer projectId);
 }
