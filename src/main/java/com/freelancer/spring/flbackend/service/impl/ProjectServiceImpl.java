@@ -5,8 +5,10 @@ import com.freelancer.spring.flbackend.dao.ProjectDao;
 import com.freelancer.spring.flbackend.dao.UserDao;
 import com.freelancer.spring.flbackend.dto.BidDto;
 import com.freelancer.spring.flbackend.dto.ProjectDto;
+import com.freelancer.spring.flbackend.dto.param.CreateProjectDto;
 import com.freelancer.spring.flbackend.entity.Bid;
 import com.freelancer.spring.flbackend.entity.Project;
+import com.freelancer.spring.flbackend.entity.User;
 import com.freelancer.spring.flbackend.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ public class ProjectServiceImpl implements ProjectService{
 
     @Autowired
     private BidDao bidDao;
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public List<ProjectDto> getAllProjPublishedByUser(Integer userId) {
@@ -73,6 +78,21 @@ public class ProjectServiceImpl implements ProjectService{
         project.setHiredBid(bid);
         project = projectDao.save(project);
 
+        return ProjectDto.toProjectDto(project);
+    }
+
+    @Override
+    public ProjectDto postProject(CreateProjectDto createProjectDto) {
+
+        Project project = CreateProjectDto.toProject(createProjectDto);
+        if(createProjectDto.getEmployerId() != null)
+        {
+            User employer = userDao.findUserById(createProjectDto.getEmployerId());
+            if(employer != null)
+            {
+                project.setEmployer(employer);
+            }
+        }
         return ProjectDto.toProjectDto(project);
     }
 }

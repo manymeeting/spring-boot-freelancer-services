@@ -1,6 +1,7 @@
 package com.freelancer.spring.flbackend.service;
 
 import com.freelancer.spring.flbackend.dto.ProjectDto;
+import com.freelancer.spring.flbackend.dto.param.CreateProjectDto;
 import com.freelancer.spring.flbackend.entity.Project;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,8 @@ public interface ProjectService {
     ProjectDto getProjectDetails(Integer projectId);
 
     ProjectDto hireBid(Integer projectId, Integer bidId);
+
+    ProjectDto postProject(CreateProjectDto createProjectDto);
 
 
 }
