@@ -1,14 +1,14 @@
 package com.freelancer.spring.flbackend.controller;
 
 import com.freelancer.spring.flbackend.dto.ProjectDto;
+import com.freelancer.spring.flbackend.dto.param.CreateProjectDto;
 import com.freelancer.spring.flbackend.service.ProjectService;
+import com.freelancer.spring.flbackend.util.StringUtils;
+import org.omg.CosNaming.NamingContextExtPackage.StringNameHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -62,4 +62,23 @@ public class ProjectController extends GenericController {
             return success(projectDto);
         return badRequest();
     }
+
+    @PostMapping("/projects")
+    public ResponseEntity postProject(@RequestBody CreateProjectDto createProjectDto)
+    {
+        //check validity
+        if(StringUtils.checkIfNullOrEmpty(createProjectDto.getProjectDescription())
+                || StringUtils.checkIfNullOrEmpty(createProjectDto.getProjectName())
+                || createProjectDto.getEmployerId() == null)
+        {
+            return badRequest();
+        }
+
+        ProjectDto projectDto = projectService.postProject(createProjectDto);
+        if(projectDto != null)
+            return success(projectDto);
+
+        return badRequestWithtMsg("Failed to create this project");
+    }
+
 }
