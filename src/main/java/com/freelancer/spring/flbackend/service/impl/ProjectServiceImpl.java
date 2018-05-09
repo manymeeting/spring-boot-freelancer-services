@@ -49,4 +49,13 @@ public class ProjectServiceImpl implements ProjectService{
 
         return  projectDtos;
     }
+
+    @Override
+    public ProjectDto getProjectDetails(Integer projectId) {
+        Project project = projectDao.getProjectDetails(projectId);
+
+        ProjectDto projectDto = ProjectDto.toProjectDto(project);
+
+        return projectDto;
+    }
 }
