@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface BidDao extends PagingAndSortingRepository<Bid, Integer> {
-    @Query("select b from Bid where b.bidId= :bidId")
+    @Query("select b from Bid b where b.bidId = :bidId")
     Bid getBid(@Param("bidId") Integer bidId);
 
 }
