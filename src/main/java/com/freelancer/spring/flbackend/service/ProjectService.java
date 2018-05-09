@@ -8,4 +8,10 @@ import java.util.List;
 public interface ProjectService {
 
     List<ProjectDto> getAllProjPublishedByUser(Integer userId);
+
+    List<ProjectDto> getAllProjBiddedByUser(Integer userId);
+
+    List<ProjectDto> getAllProjOnStatus(String status);
+
+
 }

@@ -27,4 +27,26 @@ public class ProjectServiceImpl implements ProjectService{
 
         return projectDtos;
     }
+
+    @Override
+    public List<ProjectDto> getAllProjBiddedByUser(Integer userId) {
+        List<Project> projects = projectDao.getAllProjBiddedByUser(userId);
+
+        List<ProjectDto> projectDtos = projects.stream()
+                .map( project-> ProjectDto.toProjectDto(project))
+                .collect(Collectors.toList());
+
+        return projectDtos;
+    }
+
+    @Override
+    public List<ProjectDto> getAllProjOnStatus(String status) {
+        List<Project> projects = projectDao.getAllProjOnStatus(status);
+
+        List<ProjectDto> projectDtos = projects.stream()
+                .map( project-> ProjectDto.toProjectDto(project))
+                .collect(Collectors.toList());
+
+        return  projectDtos;
+    }
 }

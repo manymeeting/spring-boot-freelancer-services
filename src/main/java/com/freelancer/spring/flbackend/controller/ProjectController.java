@@ -1,7 +1,6 @@
 package com.freelancer.spring.flbackend.controller;
 
 import com.freelancer.spring.flbackend.dto.ProjectDto;
-import com.freelancer.spring.flbackend.dto.UserDto;
 import com.freelancer.spring.flbackend.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +22,23 @@ public class ProjectController extends GenericController {
     public ResponseEntity getAllProjPublishedByUser(@PathVariable Integer userId) {
         List<ProjectDto> projectDtoList = projectService.getAllProjPublishedByUser(userId);
 
+        if (projectDtoList != null)
+            return success(projectDtoList);
+        return notFound();
+    }
+
+    @GetMapping("/projects/bidder/{userId}")
+    public ResponseEntity getAllProjBiddedByUser(@PathVariable Integer userId) {
+        List<ProjectDto> projectDtoList = projectService.getAllProjBiddedByUser(userId);
+
+        if (projectDtoList != null)
+            return success(projectDtoList);
+        return notFound();
+    }
+
+    @GetMapping("/projects/status/{status}")
+    public ResponseEntity getAllProjOnStatus(@PathVariable String status) {
+        List<ProjectDto> projectDtoList = projectService.getAllProjOnStatus(status);
         if (projectDtoList != null)
             return success(projectDtoList);
         return notFound();
