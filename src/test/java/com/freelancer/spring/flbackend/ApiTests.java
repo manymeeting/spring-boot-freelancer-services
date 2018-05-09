@@ -62,6 +62,7 @@ public class ApiTests {
         ResponseEntity response =
                 restTemplate.getForEntity("/projects/status/invalidxxx", List.class);
         Assert.assertEquals(response.getStatusCode(), HttpStatus.OK);
+        Assert.assertEquals(response.getBody().toString(), "[]");
     }
 
     @Test
