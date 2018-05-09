@@ -89,7 +89,7 @@ public class BidDto implements Serializable {
         bidDto.setBidPrice(bid.getBidPrice());
         bidDto.setEmployerId(bid.getEmployer().getUserId());
         bidDto.setProjectId(bid.getProject().getProjectId());
-        
+
         return bidDto;
     }
 }

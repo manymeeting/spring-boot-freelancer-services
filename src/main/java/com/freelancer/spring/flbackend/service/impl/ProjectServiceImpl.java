@@ -1,8 +1,11 @@
 package com.freelancer.spring.flbackend.service.impl;
 
+import com.freelancer.spring.flbackend.dao.BidDao;
 import com.freelancer.spring.flbackend.dao.ProjectDao;
 import com.freelancer.spring.flbackend.dao.UserDao;
+import com.freelancer.spring.flbackend.dto.BidDto;
 import com.freelancer.spring.flbackend.dto.ProjectDto;
+import com.freelancer.spring.flbackend.entity.Bid;
 import com.freelancer.spring.flbackend.entity.Project;
 import com.freelancer.spring.flbackend.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +19,9 @@ public class ProjectServiceImpl implements ProjectService{
 
     @Autowired
     private ProjectDao projectDao;
+
+    @Autowired
+    private BidDao bidDao;
 
     @Override
     public List<ProjectDto> getAllProjPublishedByUser(Integer userId) {
@@ -57,5 +63,16 @@ public class ProjectServiceImpl implements ProjectService{
         ProjectDto projectDto = ProjectDto.toProjectDto(project);
 
         return projectDto;
+    }
+
+    @Override
+    public ProjectDto hireBid(Integer projectId, Integer bidId) {
+        Project project = projectDao.getProjectDetails(projectId);
+
+        Bid bid = bidDao.getBid(bidId);
+        project.setHiredBid(bid);
+        project = projectDao.save(project);
+
+        return ProjectDto.toProjectDto(project);
     }
 }

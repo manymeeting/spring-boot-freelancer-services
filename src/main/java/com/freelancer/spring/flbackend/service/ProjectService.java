@@ -16,5 +16,7 @@ public interface ProjectService {
 
     ProjectDto getProjectDetails(Integer projectId);
 
+    ProjectDto hireBid(Integer projectId, Integer bidId);
+
 
 }
